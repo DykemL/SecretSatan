@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SecretSatan.App
 {
@@ -14,8 +11,13 @@ namespace SecretSatan.App
 			string namesString;
 			while (string.IsNullOrWhiteSpace(namesString = Console.ReadLine())) ;
 			var names = namesString.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			// call SatanRandomizer method
-			// visualize results
+			var pairs = SatanRandomizer.GetSatanVictimPairs(names);
+
+			foreach (var pair in pairs)
+			{
+				Console.WriteLine(pair.Key + " " + pair.Value);
+			}
+
 			Console.ReadKey();
 		}
 	}
