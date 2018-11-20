@@ -14,7 +14,7 @@ namespace SecretSatan.App
 
             List<int> numbers = RandomizeNumbersWithExceptions(0, names.Length - 1);
 
-            double countOfPairs = names.Length;
+            int countOfPairs = names.Length;
             for(int i = 0; i < countOfPairs; i++)
             {
                 if (i == countOfPairs - 1)
@@ -28,15 +28,15 @@ namespace SecretSatan.App
         public static List<int> RandomizeNumbersWithExceptions(int startNum, int endNum)
         {
             Random rand = new Random();
-
-            int N = endNum - startNum, num, numIndex;
-
             List<int> UnrandomizedNums = new List<int> { };
             List<int> Nums = new List<int> { };
-
-            for (int i = startNum; i <= N; i++)
+            
+            int rangeOfNums = endNum - startNum;
+            for (int i = startNum; i <= rangeOfNums; i++)
                 UnrandomizedNums.Add(i);
-            for (int i = 0; i <= N; i++)
+            
+            int num, numIndex;
+            for (int i = 0; i <= rangeOfNums; i++)
             {
                 numIndex = rand.Next(0, UnrandomizedNums.Count);
                 num = UnrandomizedNums[numIndex];
