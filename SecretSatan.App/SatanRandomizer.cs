@@ -10,36 +10,33 @@ namespace SecretSatan.App
     {
         public static Dictionary<string, string> RandomizeSatanPairs(string[] names) 
         {
-            Dictionary<string, string> pairs = new Dictionary<string, string> { }; 
+            var pairs = new Dictionary<string, string>();
+            var numbers = RandomizeNumbersWithoutRepetitions(0, names.Length - 1);
 
-            List<int> numbers = RandomizeNumbersWithoutRepetitions(0, names.Length - 1);
-
-            int countOfPairs = names.Length;
-            for(int i = 0; i < countOfPairs; i++)
+            var pairsCount = names.Length;
+            for (var i = 0; i < pairsCount; i++)
             {
-                if (i == countOfPairs - 1)
-                    pairs.Add(names[numbers[i]], names[numbers[0]]);
-                else
-                    pairs.Add(names[numbers[i]], names[numbers[i+1]]);
+                var secondNameIndex = i == pairsCount - 1 ? 0 : i + 1;
+                pairs.Add(names[numbers[i]], names[numbers[secondNameIndex]]);
             }
+            
             return pairs;
         }
 
         public static List<int> RandomizeNumbersWithoutRepetitions(int startNum, int endNum)
         {
-            Random rand = new Random();
-            List<int> unrandomizedNums = new List<int> { };
-            List<int> nums = new List<int> { };
+            var rand = new Random();
+            var unrandomizedNums = new List<int>();
+            var nums = new List<int>();
             
-            int rangeOfNums = endNum - startNum;
-            for (int i = startNum; i <= rangeOfNums; i++)
+            var maxOfNums = endNum - startNum;
+            for (var i = startNum; i <= maxOfNums; i++)
                 unrandomizedNums.Add(i);
             
-            int num, numIndex;
-            for (int i = 0; i <= rangeOfNums; i++)
+            for (var i = 0; i <= maxOfNums; i++)
             {
-                numIndex = rand.Next(0, unrandomizedNums.Count);
-                num = unrandomizedNums[numIndex];
+                var numIndex = rand.Next(0, unrandomizedNums.Count);
+                var num = unrandomizedNums[numIndex];
                 nums.Add(num);
                 unrandomizedNums.RemoveAt(numIndex);
             }
