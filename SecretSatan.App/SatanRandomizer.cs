@@ -12,7 +12,7 @@ namespace SecretSatan.App
         {
             Dictionary<string, string> pairs = new Dictionary<string, string> { }; 
 
-            List<int> numbers = RandomizeNumbersWithExceptions(0, names.Length - 1);
+            List<int> numbers = RandomizeNumbersWithoutRepetitions(0, names.Length - 1);
 
             int countOfPairs = names.Length;
             for(int i = 0; i < countOfPairs; i++)
@@ -25,26 +25,26 @@ namespace SecretSatan.App
             return pairs;
         }
 
-        public static List<int> RandomizeNumbersWithExceptions(int startNum, int endNum)
+        public static List<int> RandomizeNumbersWithoutRepetitions(int startNum, int endNum)
         {
             Random rand = new Random();
-            List<int> UnrandomizedNums = new List<int> { };
-            List<int> Nums = new List<int> { };
+            List<int> unrandomizedNums = new List<int> { };
+            List<int> nums = new List<int> { };
             
             int rangeOfNums = endNum - startNum;
             for (int i = startNum; i <= rangeOfNums; i++)
-                UnrandomizedNums.Add(i);
+                unrandomizedNums.Add(i);
             
             int num, numIndex;
             for (int i = 0; i <= rangeOfNums; i++)
             {
-                numIndex = rand.Next(0, UnrandomizedNums.Count);
-                num = UnrandomizedNums[numIndex];
-                Nums.Add(num);
-                UnrandomizedNums.RemoveAt(numIndex);
+                numIndex = rand.Next(0, unrandomizedNums.Count);
+                num = unrandomizedNums[numIndex];
+                nums.Add(num);
+                unrandomizedNums.RemoveAt(numIndex);
             }
 
-            return Nums;
+            return nums;
         }
     }
 }
