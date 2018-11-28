@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "SecretSatan";
+}
+
+@using SecretSatanWebMVC.Models
+@model People
+
+<form method="POST">
+    <label for="Text">Введите имена через запятую</label>
+    <p><textarea id="Text" name="Text"></textarea></p>
+    <p><input type="submit" name="sub" value="Отправить" /></p>
+    <p><table id="pairsLayout">
+        @{
+            if (People.IsSet)
+            {
+                <tr>
+                    <td class="hunterTd">Охотник</td>
+                    <td class="victimTd">Жертва</td>
+                </tr>
+                foreach (var pair in Model.Pairs)
+                {
+                    <tr>
+                        <td class="hunterTd">@Html.Raw(pair.Key)</td>
+                        <td class="victimTd">@Html.Raw(pair.Value)</td>
+                    </tr>
+                }
+            }
+        }
+    </table></p>
+</form>
