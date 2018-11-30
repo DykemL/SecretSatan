@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "SecretSatan";
 }
 
@@ -9,22 +9,24 @@
     <label for="Text">Введите имена через запятую</label>
     <p><textarea id="Text" name="Text"></textarea></p>
     <p><input type="submit" name="sub" value="Составить пары" /></p>
-    <p><table id="pairsLayout">
         @{
             if (People.IsSet)
             {
+                <label for="pairsLayout">Пары:</label>
+                <p><table id="pairsLayout">
                 <tr>
-                    <td class="hunterTd">Охотник</td>
-                    <td class="victimTd">Жертва</td>
+                    <th class="hunterTd">Сатана</th>
+                    <th class="victimTd">Жертва</th>
                 </tr>
-                foreach (var pair in Model.Pairs)
+                @foreach (var pair in Model.Pairs)
                 {
                     <tr>
                         <td class="hunterTd">@Html.Raw(pair.Key)</td>
                         <td class="victimTd">@Html.Raw(pair.Value)</td>
                     </tr>
                 }
+                </table></p>
             }
         }
-    </table></p>
+    
 </form>
